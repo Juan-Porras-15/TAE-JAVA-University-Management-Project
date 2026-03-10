@@ -27,12 +27,12 @@ public class University {
         teachers.add(pt1);
         teachers.add(pt2);
 
-        students.add(new Student(101, "Alice Johnson", 20));
-        students.add(new Student(102, "Bob Miller", 22));
-        students.add(new Student(103, "Charlie Davis", 19));
-        students.add(new Student(104, "Diana Prince", 21));
-        students.add(new Student(105, "Ethan Hunt", 23));
-        students.add(new Student(106, "Fiona Apple", 20));
+        students.add(new Student("Alice Johnson", 20));
+        students.add(new Student("Bob Miller", 22));
+        students.add(new Student("Charlie Davis", 19));
+        students.add(new Student("Diana Prince", 21));
+        students.add(new Student("Ethan Hunt", 23));
+        students.add(new Student("Fiona Apple", 20));
 
         UniversityClass math = new UniversityClass("Mathematics 101", "Room A1", ft1);
         math.addStudentToClass(students.get(0));

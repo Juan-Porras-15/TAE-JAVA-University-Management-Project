@@ -1,7 +1,7 @@
 package models;
 
 public class Student {
-    private static int nextId = 106;
+    private static int nextId = 99;
     private int id;
     private String name;
     private int age;
