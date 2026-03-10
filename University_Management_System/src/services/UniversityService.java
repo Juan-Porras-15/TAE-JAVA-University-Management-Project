@@ -43,31 +43,25 @@ public class UniversityService implements IUniversityService {
 
     @Override
     public void registerNewStudent() {
-        int id = InputValidator.readInt("Unique ID: ", 1, 999999);
+        System.out.println("\n--- REGISTER NEW STUDENT ---");
 
-        Student student = university.getStudentById(id);
+        String name = InputValidator.readNonEmptyString("Student's Name: ");
+        int age = InputValidator.readInt("Age: ", 15, 99);
 
-        if (student == null) {
-            String name = InputValidator.readNonEmptyString("Student's Name: ");
-            int age = InputValidator.readInt("Age: ", 15, 99);
-            student = new Student(id, name, age);
-            university.addStudent(student);
-            System.out.println("New student created in the system.");
-        } else {
-            System.out.println("Student found in system: " + student.getName());
-        }
+        Student newStudent = new Student(name, age);
+        university.addStudent(newStudent);
 
-        System.out.println("Select a class to enroll:");
+        System.out.println("The student was created successfully! It's ID is: " + newStudent.getId());
+
+        System.out.println("\nSelect a class to enroll the student:");
         displayClassesShort();
-        int classChoice = InputValidator.readInt("Class Number: ", 1, university.getClasses().size());
+        int classChoice = InputValidator.readInt("Class number: ", 1, university.getClasses().size());
         UniversityClass selectedClass = university.getClasses().get(classChoice - 1);
 
-        boolean isEnrolled = selectedClass.addStudentToClass(student);
-
-        if (isEnrolled) {
-            System.out.println("Success: " + student.getName() + " has been enrolled in " + selectedClass.getName() + ".");
+        if (selectedClass.addStudentToClass(newStudent)) {
+            System.out.println("Success: " + name + " was enrolled in:  " + selectedClass.getName());
         } else {
-            System.out.println("Error: The student " + student.getName() + " is ALREADY enrolled in " + selectedClass.getName() + ".");
+            System.out.println("Error: The student is already enrolled in this class");
         }
     }
 
