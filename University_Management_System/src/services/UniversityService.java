@@ -133,6 +133,32 @@ public class UniversityService implements IUniversityService {
         }
     }
 
+    @Override
+    public void enrollExistingStudentToClass() {
+        System.out.println("\n--- ENROLL EXISTING STUDENT ---");
+
+        int id = InputValidator.readInt("Provide the student ID: ", 1, 999999);
+        Student student = university.getStudentById(id);
+
+        if (student == null) {
+            System.out.println("Error: No student found with ID: " + id);
+            return;
+        }
+
+        System.out.println("Selected student: " + student.getName());
+
+        System.out.println("Select a class to enroll the student.");
+        displayClassesShort();
+        int classChoice = InputValidator.readInt("Class number: ", 1, university.getClasses().size());
+        UniversityClass selectedClass = university.getClasses().get(classChoice - 1);
+
+        if (selectedClass.addStudentToClass(student)) {
+            System.out.println("Success! " + student.getName() + " is now enrolled in " + selectedClass.getName());
+        } else {
+            System.out.println("Warning: The student was already enrolled in this class.");
+        }
+    }
+
     private void displayClassesShort() {
         for (int i = 0; i < university.getClasses().size(); i++) {
             System.out.println((i + 1) + ". " + university.getClasses().get(i).getName());
