@@ -7,4 +7,5 @@ public interface IUniversityService {
     public void createNewUniversityClass();
     public void listClassesByStudentId();
     public void displayAllStudents();
+    public void enrollExistingStudentToClass();
 }
