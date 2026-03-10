@@ -1,4 +1,4 @@
-package model;
+package models;
 
 public class Student {
     private static int nextId = 106;
